@@ -1,5 +1,7 @@
 package com.example.todaydiary.comment;
 
+import com.example.todaydiary.security.UserDetailsImpl;
+import com.example.todaydiary.user.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
@@ -16,15 +18,15 @@ public class CommentService {
 
 
     @Transactional
-    public Comment cerateComment(
+    public Comment createComment(
             Long diaryId,
             CommentRequestDto requestDto,
-            PrincipalDetails principalDetails,
+            UserDetailsImpl userDetails,
             BindingResult bindingResult) {
         Diary diary = diaryRepository.findById(diaryId).orElseThrow(
                 () -> new IllegalArgumentException("해당하는 게시글을 찾을 수 없습니다.")
         );
-        User user = principalDetails.getUser();
+        User user = userDetails.getUser();
 
         if (bindingResult.hasErrors()){
             throw  new IllegalArgumentException(bindingResult.getFieldError().getDefaultMessage());
@@ -44,14 +46,14 @@ public class CommentService {
     public Comment updateComment(
             Long commentId,
             CommentRequestDto requestDto,
-            PrincipalDetails principalDetails) {
+            UserDetailsImpl userDetails) {
 
         Comment comment = commentRepository.findById(commentId)
                 .orElseThrow(
                         () -> new IllegalArgumentException("댓글이 존재하지 않습니다.")
                 );
         User user = comment.getUser();
-        if (principalDetails.getUser != user){
+        if (userDetails.getUser() != user){
             throw new IllegalArgumentException("작성자만 수정할 수 있습니다.");
         } else if (requestDto.getComment()==null){
             throw new IllegalArgumentException("댓글을 입력해주세요!");
@@ -66,7 +68,7 @@ public class CommentService {
     @Transactional
     public void deleteComment(Long commentId, UserDetailsImpl userDetails) {
         User user = commentRepository.findById(commentId).get().getUser();
-        if (user!=userDetails.getUser){
+        if (user!=userDetails.getUser()){
             throw new IllegalArgumentException("작성자만 삭제 할 수 있습니다.");
         } else {
             commentRepository.deleteById(commentId);
