@@ -4,9 +4,9 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.example.todaydiary.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class UserController {
@@ -20,7 +20,7 @@ public class UserController {
 
     // 회원 가입 요청 처리
     @PostMapping("/api/signup")
-    public String registerUser(@Validated @RequestBody UserRequestDto requestDto) {  //SignupRequestDto 앞에 @RequestParam이 생략
+    public String registerUser(UserRequestDto requestDto) {  //SignupRequestDto 앞에 @RequestParam이 생략
         userService.registerUser(requestDto);
         return "redirect:/api/login";
     }
@@ -36,4 +36,4 @@ public class UserController {
     public String signup() {
         return "signup";
     }
-        }
+}
