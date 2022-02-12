@@ -1,8 +1,5 @@
 package com.example.todaydiary.user;
 
-import com.example.todaydiary.user.UserRequestDto;
-import com.example.todaydiary.user.User;
-import com.example.todaydiary.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;

@@ -50,7 +50,7 @@ public class CommentService {
 
         Comment comment = commentRepository.findById(commentId)
                 .orElseThrow(
-                        () -> new IllegalArgumentException("댓글이 존재하지 않습니다.")
+                        () -> new IllegalArgumentException("해당 댓글이 존재하지 않습니다.")
                 );
         User user = comment.getUser();
         if (userDetails.getUser() != user){
