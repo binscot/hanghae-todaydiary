@@ -26,6 +26,10 @@ dependencies {
     runtimeOnly 'mysql:mysql-connector-java'
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    //유효성 검사를 위한 validation
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    // 스프링 시큐리티
+    implementation 'org.springframework.boot:spring-boot-starter-security'
 }
 
 tasks.named('test') {
