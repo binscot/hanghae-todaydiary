@@ -26,18 +26,12 @@ dependencies {
     runtimeOnly 'mysql:mysql-connector-java'
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
-<<<<<<< HEAD
+
     //유효성 검사를 위한 validation
     implementation 'org.springframework.boot:spring-boot-starter-validation'
     // 스프링 시큐리티
     implementation 'org.springframework.boot:spring-boot-starter-security'
-=======
 
-    // 스프링 시큐리티
-    implementation 'org.springframework.boot:spring-boot-starter-security'
-    // Thymeleaf (뷰 템플릿 엔진)
-    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
->>>>>>> feature2/user
 }
 
 tasks.named('test') {
