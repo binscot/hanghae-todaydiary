@@ -36,12 +36,4 @@ public class UserController {
     public String signup() {
         return "signup";
     }
-
-//    프론트와 상의를 해서 백에서 할지 프론트에서 할지
-
-//    // ID중복체크
-//    @PostMapping("/api/signup/checkId")
-//    public String registerUser(SignupRequestDto requestDto) {  //SignupRequestDto 앞에 @RequestParam이 생략
-//        userService.registerUser(requestDto);
-//        return "redirect:/user/login";
-    }
+}
