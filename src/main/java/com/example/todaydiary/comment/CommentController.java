@@ -22,6 +22,7 @@ public class CommentController {
             @Validated @RequestBody CommentRequestDto requestDto,
             BindingResult bindingResult,
             @AuthenticationPrincipal UserDetailsImpl userDetails
+
     ){
         Comment comment = commentService.createComment(diaryId,requestDto,userDetails,bindingResult);
         return ResponseEntity.ok(comment);
