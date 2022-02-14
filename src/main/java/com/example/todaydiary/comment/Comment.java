@@ -1,5 +1,6 @@
 package com.example.todaydiary.comment;
 
+import com.example.todaydiary.diary.Diary;
 import com.example.todaydiary.timestamped.Timestamped;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

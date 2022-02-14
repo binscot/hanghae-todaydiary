@@ -14,16 +14,11 @@ import java.util.List;
 public class DiaryService {
 
     private final DiaryRepository diaryRepository;
-    private final UserRepository userRepository;
 
 
-
+    //글 작성
     @Transactional
     public Diary createDiary(DiaryRequestDto requestDto, User user) {
-
-        User user = userRepository.findById(id).orElseThrow(
-                () -> new IllegalArgumentException("아이디가 존재하지 않습니다.")
-        );
 
         //
         String content = requestDto.getContent();
@@ -34,7 +29,7 @@ public class DiaryService {
             throw new IllegalArgumentException("1000자 이하로 입력해주세요.");
         }
 
-        Diary diary = new Diary(requestDto, user);
+        Diary diary = new Diary(requestDto, user.getId());
         diaryRepository.save(diary);
         return diary;
     }
@@ -44,14 +39,13 @@ public class DiaryService {
     @Transactional
     public Diary updateDiary(
             Long id,
-            DiaryRequestDto requestDto,
-            PrincipalDetails principalDetails)
+            DiaryRequestDto requestDto)
     {
        Diary diary = diaryRepository.findById(id).orElseThrow(
                 () -> new IllegalArgumentException("일기가 존재하지 않습니다.")
         );
        User user = diary.getUser();
-       if(principalDetails.getUser != user){
+       if(UserDetailsImpl.getUser != user){
            throw new IllegalArgumentException("작성자만 수정할 수 있습니다.");
        }
        if(requestDto.getContent()==null){
@@ -68,13 +62,10 @@ public class DiaryService {
 
     //삭제
     @Transactional
-    public void deleteDiary(Long commentId,  PrincipalDetails principalDetails) {
-        User user = diaryRepository.findById(commentId).get().getUser();
-        if (user!=principalDetails.getUser){
-            throw new IllegalArgumentException("작성자만 삭제할 수 있습니다.");
-        } else {
-            diaryRepository.deleteById(commentId);
+    public Long deleteDiary(Long diaryId) {
+        Diary diary = diaryRepository.findById(diaryId)
+                        .orElseThrow(()->new IllegalArgumentException("일기가 없습니다."));
+            diaryRepository.deleteById(diaryId);
+            return diaryId;
         }
     }
-
-}

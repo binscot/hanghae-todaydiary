@@ -1,5 +1,7 @@
 package com.example.todaydiary.comment;
 
+import com.example.todaydiary.diary.Diary;
+import com.example.todaydiary.diary.DiaryRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
