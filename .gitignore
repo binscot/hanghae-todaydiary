@@ -35,3 +35,12 @@ out/
 
 ### VS Code ###
 .vscode/
+/src/main/java/com/example/todaydiary/diary/DiaryController.java
+/src/main/java/com/example/todaydiary/diary/DiaryRepository.java
+/src/main/java/com/example/todaydiary/diary/Diary.java
+/src/main/java/com/example/todaydiary/diary/DiaryController.java
+/src/main/java/com/example/todaydiary/diary/DiaryRepository.java
+/src/main/java/com/example/todaydiary/diary/DiaryRequestDto.java
+/src/main/java/com/example/todaydiary/diary/DiaryResponseDto.java
+/src/main/java/com/example/todaydiary/diary/DiaryService.java
+/src/main/java/com/example/todaydiary/diary/HomeController.java
