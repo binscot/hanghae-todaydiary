@@ -31,7 +31,7 @@ public class DiaryController  {
                     diary.getId(),
                     diary.getTitle(),
                     diary.getUser().getNickname(), // <-- Dto 효율성의 좋은 예시
-                    diary.getUser().getUid(),
+                    diary.getUser().getId(),
                     diary.getContent(),
                     diary.getCreatedAt(),
                     diary.getModifiedAt(),
@@ -72,7 +72,7 @@ public class DiaryController  {
             @RequestBody DiaryRequestDto requestDto,
             @AuthenticationPrincipal UserDetailsImpl userDetails)
     {
-        diaryService.updateDiary(diaryId, requestDto);
+        diaryService.updateDiary(diaryId, requestDto, userDetails);
         return diaryId;
     }
 
@@ -101,7 +101,7 @@ public class DiaryController  {
                     diary.getId(),
                     diary.getTitle(),
                     diary.getUser().getNickname(), // <-- Dto 효율성의 좋은 예시
-                    diary.getUser().getUid(),
+                    diary.getUser().getId(),
                     diary.getContent(),
                     diary.getCreatedAt(),
                     diary.getModifiedAt(),
