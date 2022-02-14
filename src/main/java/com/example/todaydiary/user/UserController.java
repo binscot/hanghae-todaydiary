@@ -1,39 +1,47 @@
 package com.example.todaydiary.user;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.example.todaydiary.user.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
+@RequiredArgsConstructor
 public class UserController {
 
     private final UserService userService;
+    private final UserRepository userRepository;
 
-    @Autowired
-    public UserController(UserService userService) {
-        this.userService = userService;
-    }
 
     // 회원 가입 요청 처리
     @PostMapping("/api/signup")
-    public String registerUser(UserRequestDto requestDto) {  //SignupRequestDto 앞에 @RequestParam이 생략
-        userService.registerUser(requestDto);
-        return "redirect:/api/login";
+    public ResponseEntity<User> registerUser(@RequestBody UserRequestDto requestDto) {  //SignupRequestDto 앞에 @RequestParam이 생략
+        System.out.println(requestDto);
+        User user =userService.registerUser(requestDto);
+        return ResponseEntity.ok(user);
     }
 
-    // 회원 로그인 페이지
-    @GetMapping("/api/login")
-    public String login() {
-        return "login";
+
+
+
+
+    @PostMapping("/post")
+    public ResponseEntity<UserRequestDto> showPost(@RequestBody UserRequestDto userRequestDto){
+        return ResponseEntity.ok(userRequestDto);
     }
 
-    // 회원 가입 페이지
-    @GetMapping("/api/signup")
-    public String signup() {
-        return "signup";
-    }
+//    // 회원 로그인 페이지
+//    @GetMapping("/api/login")
+//    public String login() {
+//        return "login";
+//    }
+//
+//    // 회원 가입 페이지
+//    @GetMapping("/api/signup")
+//    public String signup() {
+//        return "signup";
+//    }
 }
