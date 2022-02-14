@@ -20,7 +20,7 @@ public class User {
     // nullable: null 허용 여부
     // unique: 중복 허용 여부 (false 일때 중복 허용)
     @Column(nullable = false, unique = true)
-    private String user_id;
+    private String username;
 
     @Column(nullable = false, unique = true)
     private String nickname;
@@ -39,8 +39,8 @@ public class User {
 //    @JoinColumn(name="restaurant_id", nullable = false)
 //    private Restaurant restaurant;
 
-    public User(String user_id, String nickname, String password, String user_profile, UserRoleEnum role) {
-        this.user_id = user_id;
+    public User(String username, String nickname, String password, String user_profile, UserRoleEnum role) {
+        this.username = username;
         this.nickname = nickname;
         this.password = password;
         this.user_profile = user_profile;
