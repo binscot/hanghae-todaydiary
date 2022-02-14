@@ -1,5 +1,7 @@
 package com.example.todaydiary.comment;
 
+import com.example.todaydiary.diary.Diary;
+import com.example.todaydiary.diary.DiaryRepository;
 import com.example.todaydiary.security.UserDetailsImpl;
 import com.example.todaydiary.user.User;
 import lombok.RequiredArgsConstructor;

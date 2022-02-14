@@ -1,5 +1,6 @@
 package com.example.todaydiary.comment;
 
+import com.example.todaydiary.diary.Diary;
 import com.example.todaydiary.timestamped.Timestamped;
 import com.example.todaydiary.user.User;
 import lombok.Getter;
