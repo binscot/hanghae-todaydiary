@@ -23,16 +23,16 @@ public class UserService {
     @Transactional
     public User registerUser(UserRequestDto requestDto) {
 // 회원 ID 중복 확인
-        String username = requestDto.getUsername();
-        Optional<User> found = userRepository.findByUsername(username);
+        String user_id = requestDto.getUser_id();
+        Optional<User> found = userRepository.findByUser_id(user_id);
         if (found.isPresent()) {
             throw new IllegalArgumentException("중복된 사용자 ID 가 존재합니다.");
         }
-        System.out.println(requestDto.getUsername());
-        if(requestDto.getUsername() == null){
+        System.out.println(requestDto.getUser_id());
+        if(requestDto.getUser_id() == null){
             throw new NullPointerException("아이디를 입력해주세요");
         }
-        if (Objects.equals(requestDto.getUsername(), "")){
+        if (Objects.equals(requestDto.getUser_id(), "")){
             throw new NullPointerException("아이디를 입력해주세요!!!!!!!!!");
         }
         if(requestDto.getNickname() == null){
@@ -53,7 +53,7 @@ public class UserService {
 
 // 패스워드 암호화
         String password = passwordEncoder.encode(requestDto.getPassword());
-        String userimage = requestDto.getUserimage();
+        String user_profile = requestDto.getUser_profile();
 
 // 사용자 ROLE 확인
         UserRoleEnum role = UserRoleEnum.USER;
@@ -64,7 +64,7 @@ public class UserService {
             role = UserRoleEnum.ADMIN;
         }
 
-        User user = new User(username, nickname, password, userimage, role);
+        User user = new User(user_id, nickname, password, user_profile, role);
 
 
         return userRepository.save(user);
