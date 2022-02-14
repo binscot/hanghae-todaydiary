@@ -1,10 +1,8 @@
 package com.example.todaydiary.diary;
 
 import com.example.todaydiary.timestamped.Timestamped;
-<<<<<<< HEAD
 import com.example.todaydiary.user.User;
-=======
->>>>>>> origin/hj
+
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -27,11 +25,7 @@ public class Diary extends Timestamped {
     private String tag;
 
     @Column
-<<<<<<< HEAD
     private String image_url;
-=======
-    private String con_image;
->>>>>>> origin/hj
 
     @Column(nullable = false)
     private String title;
@@ -54,11 +48,7 @@ public class Diary extends Timestamped {
         this.user= user;
         this.emotion = requestDto.getEmotion();
         this.tag = requestDto.getTag();
-<<<<<<< HEAD
         this.image_url = requestDto.getImage_url();
-=======
-        this.con_image = requestDto.getCon_image();
->>>>>>> origin/hj
         this.title = requestDto.getTitle();
         this.content = requestDto.getContent();
         this.is_open = requestDto.getIs_open();
@@ -67,11 +57,7 @@ public class Diary extends Timestamped {
     public void updateDiary(DiaryRequestDto requestDto) {
         this.emotion = requestDto.getEmotion();
         this.tag = requestDto.getTag();
-<<<<<<< HEAD
         this.image_url = requestDto.getImage_url();
-=======
-        this.con_image = requestDto.getCon_image();
->>>>>>> origin/hj
         this.title = requestDto.getTitle();
         this.content = requestDto.getContent();
         this.is_open = requestDto.getIs_open();
