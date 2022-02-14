@@ -20,7 +20,7 @@ public class User {
     // nullable: null 허용 여부
     // unique: 중복 허용 여부 (false 일때 중복 허용)
     @Column(nullable = false, unique = true)
-    private String username;
+    private String user_id;
 
     @Column(nullable = false, unique = true)
     private String nickname;
@@ -29,7 +29,7 @@ public class User {
     private String password;
 
     @Column(nullable = true)
-    private String userimage;
+    private String user_profile;
 
     @Column(nullable = false)
     @Enumerated(value = EnumType.STRING)
@@ -39,11 +39,11 @@ public class User {
 //    @JoinColumn(name="restaurant_id", nullable = false)
 //    private Restaurant restaurant;
 
-    public User(String username, String nickname, String password, String userimage, UserRoleEnum role) {
-        this.username = username;
+    public User(String user_id, String nickname, String password, String user_profile, UserRoleEnum role) {
+        this.user_id = user_id;
         this.nickname = nickname;
         this.password = password;
-        this.userimage = userimage;
+        this.user_profile = user_profile;
         this.role = role;
     }
 }
