@@ -23,16 +23,16 @@ public class UserService {
     @Transactional
     public User registerUser(UserRequestDto requestDto) {
 // 회원 ID 중복 확인
-        String user_id = requestDto.getUser_id();
-        Optional<User> found = userRepository.findByUser_id(user_id);
+        String username = requestDto.getUsername();
+        Optional<User> found = userRepository.findByUsername(username);
         if (found.isPresent()) {
             throw new IllegalArgumentException("중복된 사용자 ID 가 존재합니다.");
         }
-        System.out.println(requestDto.getUser_id());
-        if(requestDto.getUser_id() == null){
+        System.out.println(requestDto.getUsername());
+        if(requestDto.getUsername() == null){
             throw new NullPointerException("아이디를 입력해주세요");
         }
-        if (Objects.equals(requestDto.getUser_id(), "")){
+        if (Objects.equals(requestDto.getUsername(), "")){
             throw new NullPointerException("아이디를 입력해주세요!!!!!!!!!");
         }
         if(requestDto.getNickname() == null){
@@ -64,7 +64,7 @@ public class UserService {
             role = UserRoleEnum.ADMIN;
         }
 
-        User user = new User(user_id, nickname, password, user_profile, role);
+        User user = new User(username, nickname, password, user_profile, role);
 
 
         return userRepository.save(user);
