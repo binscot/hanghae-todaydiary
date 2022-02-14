@@ -5,6 +5,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import java.io.IOException;
+
 @RestControllerAdvice
 public class RestApiExceptionHandler {
 
@@ -14,7 +16,7 @@ public class RestApiExceptionHandler {
         restApiException.setHttpStatus(HttpStatus.BAD_REQUEST);
         restApiException.setErrorMessage(ex.getMessage());
 
-        return new ResponseEntity(
+        return new ResponseEntity<>(
                 restApiException,
                 HttpStatus.BAD_REQUEST
         );
@@ -26,7 +28,19 @@ public class RestApiExceptionHandler {
         restApiException.setHttpStatus(HttpStatus.BAD_REQUEST);
         restApiException.setErrorMessage(ex.getMessage());
 
-        return new ResponseEntity(
+        return new ResponseEntity<>(
+                restApiException,
+                HttpStatus.BAD_REQUEST
+        );
+    }
+
+    @ExceptionHandler(value = { IOException.class })
+    public ResponseEntity<Object> handleApiRequestException(IOException ex) {
+        RestApiException restApiException = new RestApiException();
+        restApiException.setHttpStatus(HttpStatus.BAD_REQUEST);
+        restApiException.setErrorMessage(ex.getMessage());
+
+        return new ResponseEntity<>(
                 restApiException,
                 HttpStatus.BAD_REQUEST
         );
