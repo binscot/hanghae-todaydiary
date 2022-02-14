@@ -48,7 +48,7 @@ public class DiaryService {
                 () -> new IllegalArgumentException("일기가 존재하지 않습니다.")
         );
        User user = diary.getUser();
-       if( userDetails.getUser_id()!= user.getUser_id()){
+       if(userDetails.getUser()!= user){
            throw new IllegalArgumentException("작성자만 수정할 수 있습니다.");
        }
        if(requestDto.getContent()==null){
