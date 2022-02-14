@@ -29,7 +29,7 @@ public class User {
     private String password;
 
     @Column(nullable = true)
-    private String userimage;
+    private String user_profile;
 
     @Column(nullable = false)
     @Enumerated(value = EnumType.STRING)
@@ -39,11 +39,11 @@ public class User {
 //    @JoinColumn(name="restaurant_id", nullable = false)
 //    private Restaurant restaurant;
 
-    public User(String username, String nickname, String password, String userimage, UserRoleEnum role) {
+    public User(String username, String nickname, String password, String user_profile, UserRoleEnum role) {
         this.username = username;
         this.nickname = nickname;
         this.password = password;
-        this.userimage = userimage;
+        this.user_profile = user_profile;
         this.role = role;
     }
 }

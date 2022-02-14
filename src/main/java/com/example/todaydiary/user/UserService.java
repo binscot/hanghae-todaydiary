@@ -29,22 +29,22 @@ public class UserService {
             throw new IllegalArgumentException("중복된 사용자 ID 가 존재합니다.");
         }
         System.out.println(requestDto.getUsername());
-        if(requestDto.getUsername() == null){
+        if (requestDto.getUsername() == null) {
             throw new NullPointerException("아이디를 입력해주세요");
         }
-        if (Objects.equals(requestDto.getUsername(), "")){
+        if (Objects.equals(requestDto.getUsername(), "")) {
             throw new NullPointerException("아이디를 입력해주세요!!!!!!!!!");
         }
-        if(requestDto.getNickname() == null){
+        if (requestDto.getNickname() == null) {
             throw new NullPointerException("닉네임을 입력해주세요");
         }
-        if(requestDto.getPassword() == null){
+        if (requestDto.getPassword() == null) {
             throw new NullPointerException("비밀번호를 입력해주세요");
         }
-        if (Objects.equals(requestDto.getPassword(), "")){
+        if (Objects.equals(requestDto.getPassword(), "")) {
             throw new NullPointerException("비밀번호를 입력해주세요!!!!!!!!!!!!");
         }
-        if (Objects.equals(requestDto.getNickname(), "")){
+        if (Objects.equals(requestDto.getNickname(), "")) {
             throw new NullPointerException("닉네입을 입력해주세요!!!!!!!!!!!!!!!");
         }
 
@@ -53,7 +53,7 @@ public class UserService {
 
 // 패스워드 암호화
         String password = passwordEncoder.encode(requestDto.getPassword());
-        String userimage = requestDto.getUserimage();
+        String user_profile = requestDto.getUser_profile();
 
 // 사용자 ROLE 확인
         UserRoleEnum role = UserRoleEnum.USER;
@@ -64,9 +64,22 @@ public class UserService {
             role = UserRoleEnum.ADMIN;
         }
 
-        User user = new User(username, nickname, password, userimage, role);
+        User user = new User(username, nickname, password, user_profile, role);
 
 
         return userRepository.save(user);
+    }
+
+
+    public User login(UserRequestDto requestDto) {
+        User user = new User();
+
+            User member = userRepository.findByUsername(requestDto.getUsername())
+                    .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 ID 입니다."));
+            if (!passwordEncoder.matches(requestDto.getPassword(), member.getPassword())) {
+                throw new IllegalArgumentException("비밀번호를 다시 확인해 주세요.");
+            }
+            user.setUsername(member.getUsername());
+            return user;
     }
 }

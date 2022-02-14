@@ -1,6 +1,6 @@
 package com.example.todaydiary.user;
 
-import com.example.todaydiary.user.User;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
