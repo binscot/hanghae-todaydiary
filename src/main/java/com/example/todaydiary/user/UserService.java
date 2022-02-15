@@ -1,7 +1,10 @@
 package com.example.todaydiary.user;
 
 import com.example.todaydiary.security.JwtTokenProvider;
+import com.example.todaydiary.security.UserDetailsImpl;
+import com.sun.org.apache.bcel.internal.generic.NEW;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -88,6 +91,19 @@ public class UserService {
             returnUserDto.setMsg(e.getMessage());
             return returnUserDto;
         }
+    }
+
+    public UserresponseDto UserInfo(UserDetailsImpl userDetails) {
+
+        User user = userDetails.getUser();
+        String username = user.getUsername();
+        String nickname = user.getNickname();
+        String User_profile = user.getUser_profile();
+        if (username == null)
+
+            throw new NullPointerException("정보가 안들어갔엉");
+        UserresponseDto userresponseDto = new UserresponseDto(username, nickname, User_profile);
+        return userresponseDto;
     }
 }
 //    public ResponseEntity<User> UserInfo(String token) {
