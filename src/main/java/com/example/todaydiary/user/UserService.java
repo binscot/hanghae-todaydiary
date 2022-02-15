@@ -1,5 +1,7 @@
 package com.example.todaydiary.user;
 
+import com.example.todaydiary.security.JwtTokenProvider;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -9,16 +11,13 @@ import java.util.Objects;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class UserService {
+
     private final PasswordEncoder passwordEncoder;
     private final UserRepository userRepository;
+    private final JwtTokenProvider jwtTokenProvider;
     private static final String ADMIN_TOKEN = "AAABnv/xRVklrnYxKZ0aHgTBcXukeZygoC";
-
-    @Autowired
-    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
-        this.userRepository = userRepository;
-        this.passwordEncoder = passwordEncoder;
-    }
 
     @Transactional
     public User registerUser(UserRequestDto requestDto) {
@@ -74,15 +73,21 @@ public class UserService {
     //로그인 서비스
     //로그인 dto에 username과 password를 가지고 존재하는지 확인을 해줍니다 userrepository를 이용하여 db에서 체크
     //존재하지 않거나 비밀번호가 맞지 않을시 오류를 내주고 그렇지 않을경우 토큰을 발행합니다.
-    public User login(UserRequestDto requestDto) {
-        User user = new User();
+    public ReturnUser login(LoginDto loginDto) {
+        ReturnUser returnUser = new ReturnUser();
+        try {
 
-        User member = userRepository.findByUsername(requestDto.getUsername())
-                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 ID 입니다."));
-        if (!passwordEncoder.matches(requestDto.getPassword(), member.getPassword())) {
-            throw new IllegalArgumentException("비밀번호를 다시 확인해 주세요.");
+            User member = userRepository.findByUsername(loginDto.getUsername())
+                    .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 ID 입니다."));
+            if (!passwordEncoder.matches(loginDto.getPassword(), member.getPassword())) {
+                throw new IllegalArgumentException("비밀번호를 다시 확인해 주세요.");
+            }
+            returnUser.setToken(jwtTokenProvider.createToken(member.getUsername()));
+            returnUser.setUsername(member.getUsername());
+            return returnUser;
+        } catch (IllegalArgumentException e) {
+            returnUser.setMsg(e.getMessage());
+            return returnUser;
         }
-        user.setUsername(member.getUsername());
-        return user;
     }
 }
