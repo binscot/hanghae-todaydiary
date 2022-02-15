@@ -33,27 +33,27 @@ public class UserDetailsImpl implements UserDetails {
         return user.getUsername();
     }
 
-    @Override
+    @Override //계정의 만료여부 리턴 스프링시큐리티의 기능들
     public boolean isAccountNonExpired() {
         return true;
     }
 
-    @Override
+    @Override //계정의 잠금여부를 리턴
     public boolean isAccountNonLocked() {
         return true;
     }
 
-    @Override
+    @Override //계정의 비번이 만료되었는지 리턴
     public boolean isCredentialsNonExpired() {
         return true;
     }
 
-    @Override
+    @Override //사용가능한계정인지 리턴
     public boolean isEnabled() {
         return true;
     }
 
-    @Override
+    @Override //계정이 가지고 있는 권한 목록들을 리턴
     public Collection<? extends GrantedAuthority> getAuthorities() {
         UserRoleEnum userRole = user.getRole();
         String authority = userRole.getAuthority();
