@@ -1,5 +1,6 @@
 package com.example.todaydiary.user;
 
+import com.example.todaydiary.security.UserDetailsImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -26,20 +27,7 @@ public class UserController {
         return userService.login(loginDto);
     }
 
-    // 유저정보 전달.
-    @PostMapping("/api/user")
-    public ResponseEntity<String> UserInfo(@AuthenticationPrincipal ReturnUserDto returnUserDto) {
-        String username = returnUserDto.getUsername();
-        String nickname = returnUserDto.getNickname();
-        String userprofile = returnUserDto.getUser_profile();
-        if (username == null) {
-            throw new NullPointerException("정보가 안들어갔엉");
-        }
-        return ResponseEntity.ok(username);
-    }
+
 }
 
-//    @GetMapping("/api/user")
-//    public ResponseEntity<User> UserInfo(@RequestParam String token) {
-//        return userService.UserInfo(token);
-//    }
+
