@@ -22,6 +22,7 @@ public class DiaryController{
     public List<DiaryResponseDto> getDiary() {
         List<Diary> diaries = diaryRepository.findAllByOrderByCreatedAtDesc();
 
+
         List<DiaryResponseDto> diaryResponseDtos = new ArrayList<>();
         //계층 간 작업 시 Dto를 사용하는 습관을 갖는게 중요함.
         //Controller에서 직접 Diary diary를 건드리기보다 Dto를 활용하자.
@@ -59,6 +60,7 @@ public class DiaryController{
     }
 
     // 게시글 작성
+    @PostMapping("/api/diary")
     public Diary createDiary(@RequestBody DiaryRequestDto diaryRequestDto, @AuthenticationPrincipal UserDetailsImpl userDetails) {
 
         User user = userDetails.getUser();
