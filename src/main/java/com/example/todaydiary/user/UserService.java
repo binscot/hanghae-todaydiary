@@ -29,22 +29,22 @@ public class UserService {
             throw new IllegalArgumentException("중복된 사용자 ID 가 존재합니다.");
         }
         System.out.println(requestDto.getUsername());
-        if(requestDto.getUsername() == null){
+        if (requestDto.getUsername() == null) {
             throw new NullPointerException("아이디를 입력해주세요");
         }
-        if (Objects.equals(requestDto.getUsername(), "")){
+        if (Objects.equals(requestDto.getUsername(), "")) {
             throw new NullPointerException("아이디를 입력해주세요!!!!!!!!!");
         }
-        if(requestDto.getNickname() == null){
+        if (requestDto.getNickname() == null) {
             throw new NullPointerException("닉네임을 입력해주세요");
         }
-        if(requestDto.getPassword() == null){
+        if (requestDto.getPassword() == null) {
             throw new NullPointerException("비밀번호를 입력해주세요");
         }
-        if (Objects.equals(requestDto.getPassword(), "")){
+        if (Objects.equals(requestDto.getPassword(), "")) {
             throw new NullPointerException("비밀번호를 입력해주세요!!!!!!!!!!!!");
         }
-        if (Objects.equals(requestDto.getNickname(), "")){
+        if (Objects.equals(requestDto.getNickname(), "")) {
             throw new NullPointerException("닉네입을 입력해주세요!!!!!!!!!!!!!!!");
         }
 
@@ -68,5 +68,21 @@ public class UserService {
 
 
         return userRepository.save(user);
+    }
+
+
+    //로그인 서비스
+    //로그인 dto에 username과 password를 가지고 존재하는지 확인을 해줍니다 userrepository를 이용하여 db에서 체크
+    //존재하지 않거나 비밀번호가 맞지 않을시 오류를 내주고 그렇지 않을경우 토큰을 발행합니다.
+    public User login(UserRequestDto requestDto) {
+        User user = new User();
+
+        User member = userRepository.findByUsername(requestDto.getUsername())
+                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 ID 입니다."));
+        if (!passwordEncoder.matches(requestDto.getPassword(), member.getPassword())) {
+            throw new IllegalArgumentException("비밀번호를 다시 확인해 주세요.");
+        }
+        user.setUsername(member.getUsername());
+        return user;
     }
 }

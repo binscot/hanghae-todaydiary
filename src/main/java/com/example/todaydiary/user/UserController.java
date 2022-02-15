@@ -25,19 +25,16 @@ public class UserController {
     }
 
 
-
-
-
     @PostMapping("/post")
     public ResponseEntity<UserRequestDto> showPost(@RequestBody UserRequestDto userRequestDto){
         return ResponseEntity.ok(userRequestDto);
     }
 
-//    // 회원 로그인 페이지
-//    @GetMapping("/api/login")
-//    public String login() {
-//        return "login";
-//    }
+// 로그인
+@PostMapping("/api/login")
+public User login(@RequestBody UserRequestDto requestDto) {
+    return userService.login(requestDto);
+}
 //
 //    // 회원 가입 페이지
 //    @GetMapping("/api/signup")
