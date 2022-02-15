@@ -28,6 +28,7 @@ public class UserController {
     }
 
 
+<<<<<<< HEAD
 
 
 //    // 회원 로그인 페이지
@@ -35,6 +36,18 @@ public class UserController {
 //    public String login() {
 //        return "login";
 //    }
+=======
+    @PostMapping("/post")
+    public ResponseEntity<UserRequestDto> showPost(@RequestBody UserRequestDto userRequestDto){
+        return ResponseEntity.ok(userRequestDto);
+    }
+
+// 로그인
+@PostMapping("/api/login")
+public User login(@RequestBody UserRequestDto requestDto) {
+    return userService.login(requestDto);
+}
+>>>>>>> feature/test
 //
 //    // 회원 가입 페이지
 //    @GetMapping("/api/signup")
