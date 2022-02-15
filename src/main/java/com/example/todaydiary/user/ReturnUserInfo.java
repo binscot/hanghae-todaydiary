@@ -1,4 +1,4 @@
-package com.mini.coffzag.response;
+package com.example.todaydiary.user;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

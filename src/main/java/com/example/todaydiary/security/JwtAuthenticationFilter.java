@@ -1,4 +1,4 @@
-package com.mini.coffzag.security;
+package com.example.todaydiary.security;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;

@@ -1,4 +1,4 @@
-package com.mini.coffzag.security;
+package com.example.todaydiary.security;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;

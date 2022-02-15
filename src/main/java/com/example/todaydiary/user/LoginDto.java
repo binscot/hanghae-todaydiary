@@ -1,4 +1,4 @@
-package com.mini.coffzag.dto;
+package com.example.todaydiary.user;
 
 import lombok.*;
 

@@ -17,8 +17,14 @@ public class UserController {
     // 회원 가입 요청 처리
     @PostMapping("/api/signup")
     public ResponseEntity<User> registerUser(@RequestBody UserRequestDto requestDto) {
-        User user =userService.registerUser(requestDto);
+        User user = userService.registerUser(requestDto);
         return ResponseEntity.ok(user);
+    }
+
+    // 로그인
+    @PostMapping("/api/login")
+    public ReturnUser login(@RequestBody LoginDto loginDto) {
+        return userService.login(loginDto);
     }
 
     @GetMapping("/api/user")
@@ -27,31 +33,8 @@ public class UserController {
         return ResponseEntity.ok(user);
     }
 
-
-<<<<<<< HEAD
-
-
-//    // 회원 로그인 페이지
-//    @GetMapping("/api/login")
-//    public String login() {
-//        return "login";
-//    }
-=======
     @PostMapping("/post")
-    public ResponseEntity<UserRequestDto> showPost(@RequestBody UserRequestDto userRequestDto){
+    public ResponseEntity<UserRequestDto> showPost(@RequestBody UserRequestDto userRequestDto) {
         return ResponseEntity.ok(userRequestDto);
     }
-
-// 로그인
-@PostMapping("/api/login")
-public User login(@RequestBody UserRequestDto requestDto) {
-    return userService.login(requestDto);
-}
->>>>>>> feature/test
-//
-//    // 회원 가입 페이지
-//    @GetMapping("/api/signup")
-//    public String signup() {
-//        return "signup";
-//    }
 }
