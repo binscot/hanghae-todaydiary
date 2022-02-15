@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,6 +27,7 @@ public class DiaryController  {
         //Controller에서 직접 Diary diary를 건드리기보다 Dto를 활용하자.
         //효율성 측면에서도 좋음. Diary 테이블(DB)에는 User의 정보 전부(id, nickname, password, email 등)가 연결되어있음.
         //내가 진짜 필요한 정보만 담아서 활용하는 것. User 전체가 아닌 User의 nickname만 뽑아서 쓰는 것이 효율적임.
+
         for(Diary diary : diaries){
             DiaryResponseDto diaryResponseDto = new DiaryResponseDto(
                     diary.getId(),
@@ -35,7 +37,7 @@ public class DiaryController  {
                     diary.getContent(),
                     diary.getCreatedAt(),
                     diary.getModifiedAt(),
-                    diary.getImage_url(),
+                    diary.getImageUrls(),
                     diary.getEmotion(),
                     diary.getTag(),
                     diary.getIs_open()
@@ -57,7 +59,6 @@ public class DiaryController  {
     }
 
     // 게시글 작성
-    @PostMapping("/api/diary")
     public Diary createDiary(@RequestBody DiaryRequestDto diaryRequestDto, @AuthenticationPrincipal UserDetailsImpl userDetails) {
 
         User user = userDetails.getUser();
@@ -105,7 +106,7 @@ public class DiaryController  {
                     diary.getContent(),
                     diary.getCreatedAt(),
                     diary.getModifiedAt(),
-                    diary.getImage_url(),
+                    diary.getImageUrls(),
                     diary.getEmotion(),
                     diary.getTag(),
                     diary.getIs_open()

@@ -31,6 +31,7 @@ public class DiaryService {
             throw new IllegalArgumentException("1000자 이하로 입력해주세요.");
         }
 
+
         Diary diary = new Diary(requestDto, user);
         diaryRepository.save(diary);
         return diary;
