@@ -12,7 +12,7 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
-public class DiaryController  {
+public class DiaryController{
 
     private final DiaryRepository diaryRepository;
     private final DiaryService diaryService;
