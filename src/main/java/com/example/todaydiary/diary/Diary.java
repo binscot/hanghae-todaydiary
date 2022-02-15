@@ -8,10 +8,12 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Getter
 @Entity
 @NoArgsConstructor
+
 public class Diary extends Timestamped {
 
     @Id
@@ -23,9 +25,6 @@ public class Diary extends Timestamped {
 
     @Column
     private String tag;
-
-    @Column
-    private String image_url;
 
     @Column(nullable = false)
     private String title;
@@ -40,6 +39,10 @@ public class Diary extends Timestamped {
     @JoinColumn(nullable = false)
     private User user;
 
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "imageUrl_id") //오더 아이디 외래키주기
+    private List<ImageUrl> imageUrls;
+
 
     @Builder
     //앞에 컬럼지정해줬으니 객체 만들어줘야지. food에는 dto에서 이름이랑 가격 갖고오고, 조인컬럼한 레스토랑 넣어주자
@@ -48,7 +51,7 @@ public class Diary extends Timestamped {
         this.user= user;
         this.emotion = requestDto.getEmotion();
         this.tag = requestDto.getTag();
-        this.image_url = requestDto.getImage_url();
+        this.imageUrls = requestDto.getImageUrls();
         this.title = requestDto.getTitle();
         this.content = requestDto.getContent();
         this.is_open = requestDto.getIs_open();
@@ -57,7 +60,7 @@ public class Diary extends Timestamped {
     public void updateDiary(DiaryRequestDto requestDto) {
         this.emotion = requestDto.getEmotion();
         this.tag = requestDto.getTag();
-        this.image_url = requestDto.getImage_url();
+        this.imageUrls = requestDto.getImageUrls();
         this.title = requestDto.getTitle();
         this.content = requestDto.getContent();
         this.is_open = requestDto.getIs_open();
