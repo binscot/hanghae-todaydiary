@@ -22,7 +22,7 @@ public class DiaryResponseDto {
     private final Boolean is_open;
 
     public DiaryResponseDto(Long id,String title,String nickname, Long uid, String content, LocalDateTime createdAt, LocalDateTime modifiedAt,
-                            List<ImageUrl> imageUrls , String emotion, String tag, Boolean is_open) {
+                            List<ImageUrl> imageUrlList , String emotion, String tag, Boolean is_open) {
         this.id = id;
         this.title = title;
         this.nickname = nickname;
@@ -30,7 +30,7 @@ public class DiaryResponseDto {
         this.content = content;
         this.createdAt = createdAt;
         this.modifiedAt = modifiedAt;
-        this.imageUrls = imageUrls;
+        this.imageUrls = imageUrlList;
         this.emotion = emotion;
         this.tag = tag;
         this.is_open = is_open;

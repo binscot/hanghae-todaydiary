@@ -19,12 +19,6 @@ public class ImageUrl {
     @Column(nullable = false)
     private String imageUrl;
 
-    @Builder
-    public ImageUrl(String imageUrl){
-
-        this.imageUrl = imageUrl;
-    }
-
 }
 
 

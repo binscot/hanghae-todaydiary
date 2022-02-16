@@ -14,19 +14,18 @@ import java.util.List;
 public class DiaryService {
 
     private final DiaryRepository diaryRepository;
+    private final ImageUrlRepository imageUrlRepository;
 
 
     //글 작성
     @Transactional
     public Diary createDiary(
             DiaryRequestDto requestDto,
-            User user,
-            ImageUrlRepository imageUrlRepository) {
+            User user) {
 
-        List<ImageUrl> imageUrls1 = requestDto.getImageUrl();
-        List<ImageUrl> imageUrlList = new ArrayList<>();
-        for(ImageUrl imageUrl : imageUrls1 ){
-            imageUrlList.add(imageUrlRepository.save(imageUrl)
+        List<ImageUrl> imageUrlList1 =  new ArrayList<>();
+        for(ImageUrl imageUrls : requestDto.getImageUrlList()){
+            imageUrlList1.add(imageUrlRepository.save(imageUrls)
             );
         }
 
@@ -38,14 +37,9 @@ public class DiaryService {
             throw new IllegalArgumentException("1000자 이하로 입력해주세요.");
         }
 
-        Diary diary = new Diary(requestDto, user);
+        Diary diary = new Diary(requestDto, user, imageUrlList1);
 
-        diaryRepository.save(diary);
-
-
-
-
-        return diary;
+        return diaryRepository.save(diary);
     }
 
 
