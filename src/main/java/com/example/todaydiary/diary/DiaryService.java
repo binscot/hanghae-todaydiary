@@ -3,10 +3,7 @@ package com.example.todaydiary.diary;
 import com.example.todaydiary.security.UserDetailsImpl;
 import com.example.todaydiary.user.User;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.transaction.Transactional;
 import java.util.ArrayList;
@@ -22,16 +19,14 @@ public class DiaryService {
 
     //글 작성
     @Transactional
-    public Diary createDiary(DiaryRequestDto requestDto, User user) {
+    public Diary createDiary(
+            DiaryRequestDto requestDto,
+            User user) {
 
-        List<ImageUrl> imageUrls1 = requestDto.getImageUrls();
-        List<ImageUrl> imageUrls = new ArrayList<>();
-        for(ImageUrl imageUrl1 : imageUrls1 ){
-            ImageUrl imageUrl = new ImageUrl(
-                    imageUrl1.getImageUrl()
+        List<ImageUrl> imageUrlList1 =  new ArrayList<>();
+        for(ImageUrl imageUrls : requestDto.getImageUrlList()){
+            imageUrlList1.add(imageUrlRepository.save(imageUrls)
             );
-            imageUrls.add(imageUrl);
-            imageUrlRepository.save(imageUrl);
         }
 
         String content = requestDto.getContent();
@@ -42,10 +37,9 @@ public class DiaryService {
             throw new IllegalArgumentException("1000자 이하로 입력해주세요.");
         }
 
+        Diary diary = new Diary(requestDto, user, imageUrlList1);
 
-        Diary diary = new Diary(requestDto, user);
-        diaryRepository.save(diary);
-        return diary;
+        return diaryRepository.save(diary);
     }
 
 

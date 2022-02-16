@@ -40,27 +40,28 @@ public class Diary extends Timestamped {
     private User user;
 
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "imageUrl_id") //오더 아이디 외래키주기
-    private List<ImageUrl> imageUrls;
+    @JoinColumn(name = "DIARY_NAME") //오더 아이디 외래키주기
+    private List<ImageUrl> imageUrlList;
 
 
     @Builder
-    //앞에 컬럼지정해줬으니 객체 만들어줘야지. food에는 dto에서 이름이랑 가격 갖고오고, 조인컬럼한 레스토랑 넣어주자
-    public Diary(DiaryRequestDto requestDto, User user){
+    public Diary(DiaryRequestDto requestDto, User user, List<ImageUrl> imageUrlList1){
         this.id = requestDto.getId();
         this.user= user;
         this.emotion = requestDto.getEmotion();
         this.tag = requestDto.getTag();
-        this.imageUrls = requestDto.getImageUrls();
+        this.imageUrlList = imageUrlList1;
         this.title = requestDto.getTitle();
         this.content = requestDto.getContent();
         this.is_open = requestDto.getIs_open();
     }
 
+
+
     public void updateDiary(DiaryRequestDto requestDto) {
         this.emotion = requestDto.getEmotion();
         this.tag = requestDto.getTag();
-        this.imageUrls = requestDto.getImageUrls();
+        this.imageUrlList = requestDto.getImageUrlList();
         this.title = requestDto.getTitle();
         this.content = requestDto.getContent();
         this.is_open = requestDto.getIs_open();
