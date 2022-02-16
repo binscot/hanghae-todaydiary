@@ -7,7 +7,6 @@ import java.util.List;
 
 @Getter
 public class DiaryRequestDto {
-    private Long id;
     private String emotion;
     private String tag;
     private List<ImageUrl> imageUrlList;

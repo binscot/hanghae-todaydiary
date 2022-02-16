@@ -46,7 +46,6 @@ public class Diary extends Timestamped {
 
     @Builder
     public Diary(DiaryRequestDto requestDto, User user, List<ImageUrl> imageUrlList1){
-        this.id = requestDto.getId();
         this.user= user;
         this.emotion = requestDto.getEmotion();
         this.tag = requestDto.getTag();
