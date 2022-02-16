@@ -86,7 +86,7 @@ public class DiaryController{
     //게시글 삭제
     @DeleteMapping("/api/diary/{diaryId}")
     public Long deleteDiary(@PathVariable Long diaryId, @AuthenticationPrincipal UserDetailsImpl userDetails){
-        diaryService.deleteDiary(diaryId);
+        diaryService.deleteDiary(diaryId,userDetails);
         return diaryId;
     }
 
