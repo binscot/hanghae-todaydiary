@@ -71,8 +71,8 @@ public class DiaryService {
 
     //삭제
     @Transactional
-    public Long deleteDiary(Long diaryId) {
-        Diary diary = diaryRepository.findById(diaryId)
+    public Long deleteDiary(Long diaryId, UserDetailsImpl userDetails) {
+        Diary diary = diaryRepository.findById(diaryId).get().getUser()
                         .orElseThrow(()->new IllegalArgumentException("일기가 없습니다."));
             diaryRepository.deleteById(diaryId);
             return diaryId;
