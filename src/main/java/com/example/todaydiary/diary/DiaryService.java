@@ -23,17 +23,17 @@ public class DiaryService {
             DiaryRequestDto requestDto,
             User user) {
 
-        List<ImageUrl> imageUrlList1 =  new ArrayList<>();
-        for(ImageUrl imageUrls : requestDto.getImageUrlList()){
+        List<ImageUrl> imageUrlList1 = new ArrayList<>();
+        for (ImageUrl imageUrls : requestDto.getImageUrlList()) {
             imageUrlList1.add(imageUrlRepository.save(imageUrls)
             );
         }
 
         String content = requestDto.getContent();
-        if(requestDto.getContent()==null){
+        if (requestDto.getContent() == null) {
             throw new IllegalArgumentException("내용을 입력해주세요.");
         }
-        if(content.length() >1000){
+        if (content.length() > 1000) {
             throw new IllegalArgumentException("1000자 이하로 입력해주세요.");
         }
 
@@ -48,23 +48,22 @@ public class DiaryService {
     public Diary updateDiary(
             Long id,
             DiaryRequestDto requestDto,
-            UserDetailsImpl userDetails)
-    {
-       Diary diary = diaryRepository.findById(id).orElseThrow(
+            UserDetailsImpl userDetails) {
+        Diary diary = diaryRepository.findById(id).orElseThrow(
                 () -> new IllegalArgumentException("일기가 존재하지 않습니다.")
         );
-       User user = diary.getUser();
-       if(userDetails.getUser() != user){
-           throw new IllegalArgumentException("작성자만 수정할 수 있습니다.");
-       }
-       if(requestDto.getContent()==null){
-           throw new IllegalArgumentException("내용을 입력해주세요.");
-       }
-       if(requestDto.getContent().length() > 1000){
-           throw new IllegalArgumentException ("1000자 이하로 입력해주세요.");
-       }
+        User user = diary.getUser();
+        if (userDetails.getUser() != user) {
+            throw new IllegalArgumentException("작성자만 수정할 수 있습니다.");
+        }
+        if (requestDto.getContent() == null) {
+            throw new IllegalArgumentException("내용을 입력해주세요.");
+        }
+        if (requestDto.getContent().length() > 1000) {
+            throw new IllegalArgumentException("1000자 이하로 입력해주세요.");
+        }
         diary.updateDiary(requestDto);
-       diaryRepository.save(diary);
+        diaryRepository.save(diary);
         return diary;
     }
 
@@ -72,9 +71,12 @@ public class DiaryService {
     //삭제
     @Transactional
     public Long deleteDiary(Long diaryId, UserDetailsImpl userDetails) {
-        Diary diary = diaryRepository.findById(diaryId).get().getUser()
-                        .orElseThrow(()->new IllegalArgumentException("일기가 없습니다."));
+        User user = diaryRepository.findById(diaryId).get().getUser();
+        if (user != userDetails.getUser()) {
+            throw new IllegalArgumentException("작성자만 삭제 할 수 있습니다.");
+        } else {
             diaryRepository.deleteById(diaryId);
             return diaryId;
         }
     }
+}
