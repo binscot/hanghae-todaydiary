@@ -71,10 +71,7 @@ public class DiaryService {
     //삭제
     @Transactional
     public Long deleteDiary(Long diaryId, UserDetailsImpl userDetails) {
-        User user = diaryRepository.findById(diaryId).get().getUser();
-        if (user != userDetails.getUser()) {
-            throw new IllegalArgumentException("작성자만 삭제 할 수 있습니다.");
-        } else {
+
             diaryRepository.deleteById(diaryId);
             return diaryId;
         }
