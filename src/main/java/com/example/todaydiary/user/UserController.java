@@ -20,6 +20,12 @@ public class UserController {
         return ResponseEntity.ok(user);
     }
 
+    // ID 중복 체크
+    @PostMapping("/api/signup/checkId")
+    public ReturnCheckId checkId(@RequestBody UserRequestDto requestDto){
+        return userService.checkId(requestDto);
+    }
+
     // 로그인
     @PostMapping("/api/login")
     public ReturnUserDto login(@RequestBody LoginDto loginDto) {
@@ -34,8 +40,3 @@ public class UserController {
         return ResponseEntity.ok(userresponseDto);
     }
 }
-
-//    @GetMapping("/api/user")
-//    public ResponseEntity<User> UserInfo(@RequestParam String token) {
-//        return userService.UserInfo(token);
-//    }

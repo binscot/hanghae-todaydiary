@@ -69,12 +69,28 @@ public class UserService {
     }
 
 
+    //중복확인 서비스
+    //CheckId에 중복확인성공시 반환하는 객체들이 있다. 중복된 아이디가 있을경우 fals를 이용하여 오류를 내주고 그렇지 않으면 가능하다고 성공시켜줍니다.
+    public ReturnCheckId checkId(UserRequestDto requestDto) {
+        ReturnCheckId returnCheckId = new ReturnCheckId();
+        Optional<User> member = userRepository.findByUsername(requestDto.getUsername());
+        if (member.isPresent()) {
+            returnCheckId.setOk(false);
+            returnCheckId.setMsg("중복된 ID가 존재합니다.");
+        } else {
+            returnCheckId.setOk(true);
+            returnCheckId.setMsg("사용 가능한 ID 입니다.");
+        }
+        return returnCheckId;
+    }
+
+
     //로그인 서비스
     //로그인 dto에 username과 password를 가지고 존재하는지 확인을 해줍니다 userrepository를 이용하여 db에서 체크
     //존재하지 않거나 비밀번호가 맞지 않을시 오류를 내주고 그렇지 않을경우 토큰을 발행합니다.
     public ReturnUserDto login(LoginDto loginDto) {
         ReturnUserDto returnUserDto = new ReturnUserDto();
-        try {
+        {
             User member = userRepository.findByUsername(loginDto.getUsername())
                     .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 ID 입니다."));
             if (!passwordEncoder.matches(loginDto.getPassword(), member.getPassword())) {
@@ -85,11 +101,8 @@ public class UserService {
             returnUserDto.setNickname(member.getNickname());
             returnUserDto.setUser_profile(member.getUser_profile());
             return returnUserDto;
-        } catch (IllegalArgumentException e) {
-            returnUserDto.setMsg(e.getMessage());
-            return returnUserDto;
         }
-    }
+        }
 
     public UserresponseDto UserInfo(UserDetailsImpl userDetails) {
 
