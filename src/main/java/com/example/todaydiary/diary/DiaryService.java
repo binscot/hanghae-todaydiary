@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @RequiredArgsConstructor
 @Service
@@ -71,9 +72,15 @@ public class DiaryService {
     //삭제
     @Transactional
     public Long deleteDiary(Long diaryId, UserDetailsImpl userDetails) {
-
+        Diary diary = diaryRepository.findById(diaryId).orElseThrow(
+                () -> new IllegalArgumentException("일기가 존재하지 않습니다.")
+        );
+        User user = diary.getUser();
+        Long deleteId = user.getId();
+        if (!Objects.equals(userDetails.getUser().getId(), deleteId)) {
+            throw new IllegalArgumentException("작성자만 수정할 수 있습니다.");
+        }
             diaryRepository.deleteById(diaryId);
             return diaryId;
         }
     }
-}
