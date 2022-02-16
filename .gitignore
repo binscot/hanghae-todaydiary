@@ -44,3 +44,4 @@ out/
 /src/main/java/com/example/todaydiary/diary/DiaryResponseDto.java
 /src/main/java/com/example/todaydiary/diary/DiaryService.java
 /src/main/java/com/example/todaydiary/diary/HomeController.java
+/src/main/java/com/example/todaydiary/diary/ImageUrl.java
