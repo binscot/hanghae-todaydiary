@@ -41,7 +41,7 @@ public class Diary extends Timestamped {
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "imageUrl_id") //오더 아이디 외래키주기
-    private List<ImageUrl> imageUrls;
+    private List<ImageUrl> imageUrl;
 
 
     @Builder
@@ -51,16 +51,18 @@ public class Diary extends Timestamped {
         this.user= user;
         this.emotion = requestDto.getEmotion();
         this.tag = requestDto.getTag();
-        this.imageUrls = requestDto.getImageUrls();
+        this.imageUrl = requestDto.getImageUrl();
         this.title = requestDto.getTitle();
         this.content = requestDto.getContent();
         this.is_open = requestDto.getIs_open();
     }
 
+
+
     public void updateDiary(DiaryRequestDto requestDto) {
         this.emotion = requestDto.getEmotion();
         this.tag = requestDto.getTag();
-        this.imageUrls = requestDto.getImageUrls();
+        this.imageUrl = requestDto.getImageUrl();
         this.title = requestDto.getTitle();
         this.content = requestDto.getContent();
         this.is_open = requestDto.getIs_open();

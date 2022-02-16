@@ -38,7 +38,7 @@ public class DiaryController{
                     diary.getContent(),
                     diary.getCreatedAt(),
                     diary.getModifiedAt(),
-                    diary.getImageUrls(),
+                    diary.getImageUrl(),
                     diary.getEmotion(),
                     diary.getTag(),
                     diary.getIs_open()
@@ -61,11 +61,14 @@ public class DiaryController{
 
     // 게시글 작성
     @PostMapping("/api/diary")
-    public Diary createDiary(@RequestBody DiaryRequestDto diaryRequestDto, @AuthenticationPrincipal UserDetailsImpl userDetails) {
+    public Diary createDiary(
+            @RequestBody DiaryRequestDto diaryRequestDto,
+            @AuthenticationPrincipal UserDetailsImpl userDetails,
+            ImageUrlRepository imageUrlRepository) {
 
         User user = userDetails.getUser();
 
-        return diaryService.createDiary(diaryRequestDto, user);
+        return diaryService.createDiary(diaryRequestDto, user, imageUrlRepository);
     }
 
     // 게시글 수정
@@ -108,7 +111,7 @@ public class DiaryController{
                     diary.getContent(),
                     diary.getCreatedAt(),
                     diary.getModifiedAt(),
-                    diary.getImageUrls(),
+                    diary.getImageUrl(),
                     diary.getEmotion(),
                     diary.getTag(),
                     diary.getIs_open()
