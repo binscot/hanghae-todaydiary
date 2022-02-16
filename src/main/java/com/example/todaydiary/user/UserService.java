@@ -2,9 +2,7 @@ package com.example.todaydiary.user;
 
 import com.example.todaydiary.security.JwtTokenProvider;
 import com.example.todaydiary.security.UserDetailsImpl;
-import com.sun.org.apache.bcel.internal.generic.NEW;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
