@@ -1,8 +1,8 @@
 package com.example.todaydiary.user;
 
 import com.example.todaydiary.security.JwtTokenProvider;
+import com.example.todaydiary.security.UserDetailsImpl;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -47,7 +47,6 @@ public class UserService {
             throw new NullPointerException("닉네입을 입력해주세요!!!!!!!!!!!!!!!");
         }
 
-
         String nickname = requestDto.getNickname();
 
 // 패스워드 암호화
@@ -73,21 +72,47 @@ public class UserService {
     //로그인 서비스
     //로그인 dto에 username과 password를 가지고 존재하는지 확인을 해줍니다 userrepository를 이용하여 db에서 체크
     //존재하지 않거나 비밀번호가 맞지 않을시 오류를 내주고 그렇지 않을경우 토큰을 발행합니다.
-    public ReturnUser login(LoginDto loginDto) {
-        ReturnUser returnUser = new ReturnUser();
+    public ReturnUserDto login(LoginDto loginDto) {
+        ReturnUserDto returnUserDto = new ReturnUserDto();
         try {
-
             User member = userRepository.findByUsername(loginDto.getUsername())
                     .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 ID 입니다."));
             if (!passwordEncoder.matches(loginDto.getPassword(), member.getPassword())) {
                 throw new IllegalArgumentException("비밀번호를 다시 확인해 주세요.");
             }
-            returnUser.setToken(jwtTokenProvider.createToken(member.getUsername()));
-            returnUser.setUsername(member.getUsername());
-            return returnUser;
+            returnUserDto.setToken(jwtTokenProvider.createToken(member.getUsername()));
+            returnUserDto.setUsername(member.getUsername());
+            returnUserDto.setNickname(member.getNickname());
+            returnUserDto.setUser_profile(member.getUser_profile());
+            return returnUserDto;
         } catch (IllegalArgumentException e) {
-            returnUser.setMsg(e.getMessage());
-            return returnUser;
+            returnUserDto.setMsg(e.getMessage());
+            return returnUserDto;
         }
     }
+
+    public UserresponseDto UserInfo(UserDetailsImpl userDetails) {
+
+        User user = userDetails.getUser();
+        String username = user.getUsername();
+        String nickname = user.getNickname();
+        String User_profile = user.getUser_profile();
+        if (username == null)
+
+            throw new NullPointerException("정보가 안들어왔습니다.");
+        UserresponseDto userresponseDto = new UserresponseDto(username, nickname, User_profile);
+        return userresponseDto;
+    }
 }
+//    public ResponseEntity<User> UserInfo(String token) {
+//        // 1. 받아온 토큰에서 회원정보 추출.
+//        String userPk = jwtTokenProvider.getUserPk(token);
+//         ReturnUserInfo returnUserInfo= getReturnUserInfo(userPk);
+//            returnUser.setToken(jwtTokenProvider.createToken(member.getUsername()));
+//        returnUser.setUsername(member.getUsername());
+//        returnUser.setNickname(member.getNickname());
+//        returnUser.setUser_profile(member.getUser_profile());
+//        return returnUser;
+//
+//        return userPk;
+//    }

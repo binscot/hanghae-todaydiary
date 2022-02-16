@@ -21,9 +21,7 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.CorsUtils;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Optional;
+import java.util.*;
 
 import static javax.swing.text.html.FormSubmitEvent.MethodType.GET;
 import static javax.swing.text.html.FormSubmitEvent.MethodType.POST;
@@ -93,6 +91,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider),
                         UsernamePasswordAuthenticationFilter.class);
 
+
+
+
+
 //        http.authorizeRequests()
 //                .antMatchers("/**","/api/login","/api/signup","/api/**").permitAll()
 //                .requestMatchers(CorsUtils::isPreFlightRequest).permitAll()
@@ -114,6 +116,40 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //                .exceptionHandling()
 //                .accessDeniedPage("/");
     }
+//
+//
+//    private JwtAuthFilter jwtFilter() throws Exception {
+//        List<String> skipPathList = new ArrayList<>();
+//
+//        // Static 정보 접근 허용
+//        skipPathList.add("GET,/images/**");
+//        skipPathList.add("GET,/css/**");
+//
+//        // h2-console 허용
+//        skipPathList.add("GET,/h2-console/**");
+//        skipPathList.add("POST,/h2-console/**");
+//        // 회원 관리 API 허용
+////        skipPathList.add("GET,/user/**");
+//        skipPathList.add("POST,/user/signup");
+//
+//        skipPathList.add("GET,/");
+//        skipPathList.add("GET,/basic.js");
+//
+//        skipPathList.add("GET,/favicon.ico");
+//
+//        FilterSkipMatcher matcher = new FilterSkipMatcher(
+//                skipPathList,
+//                "/**"
+//        );
+//
+//        JwtAuthFilter filter = new JwtAuthFilter(
+//                matcher,
+//                headerTokenExtractor
+//        );
+//        filter.setAuthenticationManager(super.authenticationManagerBean());
+//
+//        return filter;
+//    }
 
     @Bean
     public CorsConfigurationSource configurationSource(){

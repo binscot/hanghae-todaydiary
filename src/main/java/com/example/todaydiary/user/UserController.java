@@ -13,7 +13,6 @@ public class UserController {
 
     private final UserService userService;
 
-
     // 회원 가입 요청 처리
     @PostMapping("/api/signup")
     public ResponseEntity<User> registerUser(@RequestBody UserRequestDto requestDto) {
@@ -23,18 +22,20 @@ public class UserController {
 
     // 로그인
     @PostMapping("/api/login")
-    public ReturnUser login(@RequestBody LoginDto loginDto) {
+    public ReturnUserDto login(@RequestBody LoginDto loginDto) {
         return userService.login(loginDto);
     }
 
-    @GetMapping("/api/user")
-    public ResponseEntity<User> login(@AuthenticationPrincipal UserDetailsImpl userDetails) {
-        User user = userDetails.getUser();
-        return ResponseEntity.ok(user);
-    }
+    // 유저정보 전달.
+    @PostMapping("/api/user")
+    public ResponseEntity<UserresponseDto> UserInfo(@AuthenticationPrincipal UserDetailsImpl userDetails) {
+        UserresponseDto userresponseDto = userService.UserInfo(userDetails);
 
-    @PostMapping("/post")
-    public ResponseEntity<UserRequestDto> showPost(@RequestBody UserRequestDto userRequestDto) {
-        return ResponseEntity.ok(userRequestDto);
+        return ResponseEntity.ok(userresponseDto);
     }
 }
+
+//    @GetMapping("/api/user")
+//    public ResponseEntity<User> UserInfo(@RequestParam String token) {
+//        return userService.UserInfo(token);
+//    }
