@@ -1,5 +1,6 @@
 package com.example.todaydiary.user;
 
+import com.example.todaydiary.diary.DiaryRequestDto;
 import com.example.todaydiary.security.UserDetailsImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -39,4 +40,15 @@ public class UserController {
 
         return ResponseEntity.ok(userresponseDto);
     }
+
+    //
+    @PutMapping("/api/userupdate/{userId}")
+    public Long updateUser(
+            @PathVariable Long userId,
+            @RequestBody UserUpdateDto userUpdateDto)
+    {
+        userService.updateUser(userId, userUpdateDto);
+        return userId;
+    }
+
 }

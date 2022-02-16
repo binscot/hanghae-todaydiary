@@ -49,4 +49,11 @@ public class User {
         this.user_profile = user_profile;
         this.role = role;
     }
+
+    public void updateUser(UserUpdateDto userUpdateDto) {
+
+        this.nickname = userUpdateDto.getNickname();
+        this.user_profile = userUpdateDto.getUser_profile();
+
+    }
 }

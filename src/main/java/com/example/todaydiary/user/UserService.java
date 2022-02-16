@@ -1,5 +1,7 @@
 package com.example.todaydiary.user;
 
+import com.example.todaydiary.diary.Diary;
+import com.example.todaydiary.diary.DiaryRequestDto;
 import com.example.todaydiary.security.JwtTokenProvider;
 import com.example.todaydiary.security.UserDetailsImpl;
 import lombok.RequiredArgsConstructor;
@@ -102,7 +104,7 @@ public class UserService {
             returnUserDto.setUser_profile(member.getUser_profile());
             return returnUserDto;
         }
-        }
+    }
 
     public UserresponseDto UserInfo(UserDetailsImpl userDetails) {
 
@@ -116,6 +118,15 @@ public class UserService {
         UserresponseDto userresponseDto = new UserresponseDto(username, nickname, User_profile);
         return userresponseDto;
     }
+
+
+    public void updateUser(Long id, UserUpdateDto userUpdateDto) {
+        User user = userRepository.findById(id).orElseThrow(
+                () -> new IllegalArgumentException("유저가 존재하지 않습니다.")
+        );
+        user.updateUser(userUpdateDto);
+        userRepository.save(user);
+        }
 }
 //    public ResponseEntity<User> UserInfo(String token) {
 //        // 1. 받아온 토큰에서 회원정보 추출.
