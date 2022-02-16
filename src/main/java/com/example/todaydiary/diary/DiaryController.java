@@ -35,6 +35,7 @@ public class DiaryController{
                     diary.getTitle(),
                     diary.getUser().getNickname(), // <-- Dto 효율성의 좋은 예시
                     diary.getUser().getId(),
+                    diary.getUser().getUser_profile(),
                     diary.getContent(),
                     diary.getCreatedAt(),
                     diary.getModifiedAt(),
@@ -108,6 +109,7 @@ public class DiaryController{
                     diary.getTitle(),
                     diary.getUser().getNickname(), // <-- Dto 효율성의 좋은 예시
                     diary.getUser().getId(),
+                    diary.getUser().getUser_profile(),
                     diary.getContent(),
                     diary.getCreatedAt(),
                     diary.getModifiedAt(),
