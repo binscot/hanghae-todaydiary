@@ -101,7 +101,7 @@ public class UserService {
         String User_profile = user.getUser_profile();
         if (username == null)
 
-            throw new NullPointerException("정보가 안들어갔엉");
+            throw new NullPointerException("정보가 안들어왔습니다.");
         UserresponseDto userresponseDto = new UserresponseDto(username, nickname, User_profile);
         return userresponseDto;
     }
