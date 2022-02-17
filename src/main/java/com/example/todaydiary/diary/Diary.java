@@ -8,6 +8,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.lang.reflect.Array;
 import java.util.List;
 
 @Getter
@@ -44,6 +45,7 @@ public class Diary extends Timestamped {
     private List<ImageUrl> imageUrlList;
 
 
+
     @Builder
     public Diary(DiaryRequestDto requestDto, User user, List<ImageUrl> imageUrlList1){
         this.user= user;
@@ -65,4 +67,6 @@ public class Diary extends Timestamped {
         this.content = requestDto.getContent();
         this.is_open = requestDto.getIs_open();
     }
+
+
 }

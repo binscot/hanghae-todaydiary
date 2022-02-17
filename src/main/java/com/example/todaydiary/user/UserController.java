@@ -42,7 +42,7 @@ public class UserController {
     }
 
     //
-    @PutMapping("/api/userupdate/{userId}")
+    @PutMapping("/api/user/{userId}")
     public Long updateUser(
             @PathVariable Long userId,
             @RequestBody UserUpdateDto userUpdateDto)

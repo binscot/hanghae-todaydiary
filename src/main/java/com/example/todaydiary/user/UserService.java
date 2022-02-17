@@ -115,8 +115,7 @@ public class UserService {
         if (username == null)
 
             throw new NullPointerException("정보가 안들어왔습니다.");
-        UserresponseDto userresponseDto = new UserresponseDto(username, nickname, User_profile);
-        return userresponseDto;
+        return new UserresponseDto(username, nickname, User_profile);
     }
 
 
@@ -128,15 +127,3 @@ public class UserService {
         userRepository.save(user);
         }
 }
-//    public ResponseEntity<User> UserInfo(String token) {
-//        // 1. 받아온 토큰에서 회원정보 추출.
-//        String userPk = jwtTokenProvider.getUserPk(token);
-//         ReturnUserInfo returnUserInfo= getReturnUserInfo(userPk);
-//            returnUser.setToken(jwtTokenProvider.createToken(member.getUsername()));
-//        returnUser.setUsername(member.getUsername());
-//        returnUser.setNickname(member.getNickname());
-//        returnUser.setUser_profile(member.getUser_profile());
-//        return returnUser;
-//
-//        return userPk;
-//    }
