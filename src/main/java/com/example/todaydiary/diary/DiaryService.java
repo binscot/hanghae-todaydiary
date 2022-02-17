@@ -1,5 +1,7 @@
 package com.example.todaydiary.diary;
 
+import com.example.todaydiary.comment.Comment;
+import com.example.todaydiary.comment.CommentRepository;
 import com.example.todaydiary.diary.DiaryLike.DiaryLike;
 import com.example.todaydiary.diary.DiaryLike.DiaryLikeRepository;
 import com.example.todaydiary.diary.ImageUrl.ImageUrl;
@@ -10,9 +12,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 @RequiredArgsConstructor
 @Service
@@ -20,6 +20,7 @@ public class DiaryService {
 
     private final DiaryRepository diaryRepository;
     private final ImageUrlRepository imageUrlRepository;
+    private final CommentRepository commentRepository;
     private final DiaryLikeRepository diaryLikeRepository;
 
 
@@ -78,7 +79,7 @@ public class DiaryService {
 
     //삭제
     @Transactional
-    public void deleteDiary(Long diaryId, UserDetailsImpl userDetails) {
+    public Long deleteDiary(Long diaryId, UserDetailsImpl userDetails) {
         Diary diary = diaryRepository.findById(diaryId).orElseThrow(
                 () -> new IllegalArgumentException("일기가 존재하지 않습니다.")
         );
@@ -87,7 +88,12 @@ public class DiaryService {
         if (!Objects.equals(userDetails.getUser().getId(), deleteId)) {
             throw new IllegalArgumentException("작성자만 수정할 수 있습니다.");
         }
+        List<Comment> comments = commentRepository.findAllByDiaryId(diaryId);
+        for(Comment comment : comments){
+            commentRepository.deleteById(comment.getId());
+        }
             diaryLikeRepository.deleteByDiary(diary);
             diaryRepository.deleteById(diaryId);
+            return diaryId;
         }
     }
