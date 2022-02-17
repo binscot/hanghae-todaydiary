@@ -120,23 +120,20 @@ public class UserService {
     }
 
 
-    public void updateUser(Long id, UserUpdateDto userUpdateDto) {
+    public void updateUser(Long id, UserUpdateDto userUpdateDto, UserDetailsImpl userDetails) {
+
         User user = userRepository.findById(id).orElseThrow(
                 () -> new IllegalArgumentException("유저가 존재하지 않습니다.")
         );
+        String nickname = userUpdateDto.getNickname();
+        Optional<User> found = userRepository.findByNickname(nickname);
+        if (found.isPresent()) {
+            throw new IllegalArgumentException("중복된 닉네임이 존재합니다.");
+        }
+        if (nickname == null) {
+            throw new NullPointerException("닉네임을 입력해주세요");
+        }
         user.updateUser(userUpdateDto);
         userRepository.save(user);
-        }
+    }
 }
-//    public ResponseEntity<User> UserInfo(String token) {
-//        // 1. 받아온 토큰에서 회원정보 추출.
-//        String userPk = jwtTokenProvider.getUserPk(token);
-//         ReturnUserInfo returnUserInfo= getReturnUserInfo(userPk);
-//            returnUser.setToken(jwtTokenProvider.createToken(member.getUsername()));
-//        returnUser.setUsername(member.getUsername());
-//        returnUser.setNickname(member.getNickname());
-//        returnUser.setUser_profile(member.getUser_profile());
-//        return returnUser;
-//
-//        return userPk;
-//    }
