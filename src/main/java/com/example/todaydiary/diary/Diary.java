@@ -1,5 +1,7 @@
 package com.example.todaydiary.diary;
 
+import com.example.todaydiary.diary.DiaryLike.DiaryLike;
+import com.example.todaydiary.diary.ImageUrl.ImageUrl;
 import com.example.todaydiary.timestamped.Timestamped;
 import com.example.todaydiary.user.User;
 
@@ -8,6 +10,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -43,9 +46,23 @@ public class Diary extends Timestamped {
     @JoinColumn(name = "DIARY_NAME") //오더 아이디 외래키주기
     private List<ImageUrl> imageUrlList;
 
+    @OneToOne
+    @JoinColumn(name = "DIARYLIKE_ID")
+    private DiaryLike diaryLike;
 
     @Builder
-    public Diary(DiaryRequestDto requestDto, User user, List<ImageUrl> imageUrlList1){
+    public Diary(DiaryRequestDto requestDto, User user, List<ImageUrl> imageUrlList1, DiaryLike diaryLike){
+        this.user= user;
+        this.emotion = requestDto.getEmotion();
+        this.tag = requestDto.getTag();
+        this.imageUrlList = imageUrlList1;
+        this.title = requestDto.getTitle();
+        this.content = requestDto.getContent();
+        this.is_open = requestDto.getIs_open();
+        this.diaryLike = diaryLike;
+    }
+
+    public Diary(DiaryRequestDto requestDto, User user, List<ImageUrl> imageUrlList1) {
         this.user= user;
         this.emotion = requestDto.getEmotion();
         this.tag = requestDto.getTag();
@@ -54,7 +71,6 @@ public class Diary extends Timestamped {
         this.content = requestDto.getContent();
         this.is_open = requestDto.getIs_open();
     }
-
 
 
     public void updateDiary(DiaryRequestDto requestDto) {

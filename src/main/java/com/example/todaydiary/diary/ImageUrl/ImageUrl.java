@@ -1,4 +1,4 @@
-package com.example.todaydiary.diary;
+package com.example.todaydiary.diary.ImageUrl;
 
 import lombok.Builder;
 import lombok.Getter;

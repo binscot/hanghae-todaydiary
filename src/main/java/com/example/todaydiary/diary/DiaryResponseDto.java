@@ -1,5 +1,7 @@
 package com.example.todaydiary.diary;
 
+import com.example.todaydiary.diary.DiaryLike.DiaryLike;
+import com.example.todaydiary.diary.ImageUrl.ImageUrl;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -21,9 +23,11 @@ public class DiaryResponseDto {
     private final String emotion;
     private final String tag;
     private final Boolean is_open;
+    private DiaryLike diaryLike;
+
 
     public DiaryResponseDto(Long id,String title,String nickname, Long uid, String user_profile,String content, LocalDateTime createdAt, LocalDateTime modifiedAt,
-                            List<ImageUrl> imageUrlList , String emotion, String tag, Boolean is_open) {
+                            List<ImageUrl> imageUrlList , String emotion, String tag, Boolean is_open, DiaryLike diaryLike) {
         this.id = id;
         this.title = title;
         this.nickname = nickname;
@@ -36,5 +40,7 @@ public class DiaryResponseDto {
         this.emotion = emotion;
         this.tag = tag;
         this.is_open = is_open;
+        this.diaryLike = diaryLike;
+
     }
 }
