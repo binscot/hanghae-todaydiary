@@ -107,13 +107,14 @@ public class UserService {
     public UserresponseDto UserInfo(UserDetailsImpl userDetails) {
 
         User user = userDetails.getUser();
+        Long id = user.getId();
         String username = user.getUsername();
         String nickname = user.getNickname();
         String User_profile = user.getUser_profile();
-        if (username == null)
 
+        if (username == null)
             throw new NullPointerException("정보가 안들어왔습니다.");
-        return new UserresponseDto(username, nickname, User_profile);
+        return new UserresponseDto(id, username, nickname, User_profile);
     }
 
     @Transactional

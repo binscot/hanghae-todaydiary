@@ -40,17 +40,14 @@ public class UserController {
         return ResponseEntity.ok(userresponseDto);
     }
 
-
-
     // 유저정보 수정.
-
     @PutMapping("/api/user/{userId}")
-    public Long updateUser(
+    public ResponseEntity updateUser(
             @PathVariable Long userId,
             @RequestBody UserUpdateDto userUpdateDto
     ) {
-        userService.updateUser(userId, userUpdateDto);
-        return userId;
+        User user = userService.updateUser(userId, userUpdateDto);
+        return ResponseEntity.ok(user);
     }
 
 }
