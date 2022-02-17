@@ -1,5 +1,6 @@
 package com.example.todaydiary.diary;
 
+import com.example.todaydiary.diary.ImageUrl.ImageUrl;
 import lombok.Getter;
 
 import java.util.List;

@@ -2,9 +2,12 @@ package com.example.todaydiary.diary;
 
 import com.example.todaydiary.comment.Comment;
 import com.example.todaydiary.comment.CommentRepository;
+import com.example.todaydiary.diary.DiaryLike.DiaryLike;
+import com.example.todaydiary.diary.DiaryLike.DiaryLikeRepository;
+import com.example.todaydiary.diary.ImageUrl.ImageUrl;
+import com.example.todaydiary.diary.ImageUrl.ImageUrlRepository;
 import com.example.todaydiary.security.UserDetailsImpl;
 import com.example.todaydiary.user.User;
-import com.example.todaydiary.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -18,7 +21,9 @@ public class DiaryService {
     private final DiaryRepository diaryRepository;
     private final ImageUrlRepository imageUrlRepository;
     private final CommentRepository commentRepository;
-    private final UserRepository userRepository;
+    private final DiaryLikeRepository diaryLikeRepository;
+
+
 
 
     //글 작성
@@ -84,12 +89,11 @@ public class DiaryService {
             throw new IllegalArgumentException("작성자만 수정할 수 있습니다.");
         }
         List<Comment> comments = commentRepository.findAllByDiaryId(diaryId);
-        for (Comment comment : comments) {
+        for(Comment comment : comments){
             commentRepository.deleteById(comment.getId());
         }
-        diaryRepository.deleteById(diaryId);
-        return diaryId;
+            diaryLikeRepository.deleteByDiary(diary);
+            diaryRepository.deleteById(diaryId);
+            return diaryId;
         }
-
-
-}
+    }
