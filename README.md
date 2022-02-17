@@ -1,11 +1,11 @@
 # 오늘의 일기장 - 오일(Dayily Diary)
-https://w1644540723-rfk752224.slack.com/files/U0327QVARAT/F0338KYU2H3/____________.png
+![로고](https://user-images.githubusercontent.com/97504973/154442384-e62bbcc2-b99a-44d1-88b6-df3f05eb3761.png)
+
 
 # 팀원 정보
 ![팀원](https://user-images.githubusercontent.com/97504973/154441744-8e09d90b-9922-4fea-8ab0-102e76c71c8b.png)
 
 # 1. 프로젝트 개요(Project).🎵
-
 
 ### 프로젝트 소개(Introduction).
     
@@ -28,16 +28,7 @@ https://w1644540723-rfk752224.slack.com/files/U0327QVARAT/F0338KYU2H3/__________
 
 # 2. 개발환경( Development).❤️
 
-# 와이어 프레임(Wireframe)
-![image](https://user-images.githubusercontent.com/97504973/154434785-298c6127-61d9-41a0-9ba9-d5da695d0033.png)
-
-![image](https://user-images.githubusercontent.com/97504973/154434739-4ac1823f-0994-4470-9ca2-d58236d1d799.png)
-
-![이름 없는 노트북 (15)-15.jpg](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/8b4aaf5c-2de0-4bfc-8472-8175855aeba0/이름_없는_노트북_(15)-15.jpg)
-
-![이름 없는 노트북 (15)-16.jpg](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/95527271-900f-4ddf-ba20-c7b714239d3a/이름_없는_노트북_(15)-16.jpg)
-
-![이름 없는 노트북 (15)-17.jpg](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/0a08193a-c31a-4e3d-865b-d607444e6166/이름_없는_노트북_(15)-17.jpg)
+### 와이어 프레임(Wireframe)
 
 ## API 설계(API ****Table)****
 
