@@ -1,16 +1,11 @@
 package com.example.todaydiary.user;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.*;
-import java.util.Collection;
-import java.util.Collections;
 
 @Setter
 @Getter // get 함수를 일괄적으로 만들어줍니다.
