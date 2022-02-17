@@ -132,16 +132,6 @@ public class UserService {
         }
         user.updateUser(userUpdateDto);
         userRepository.save(user);
-<<<<<<< HEAD
         return user;
     }
 }
-=======
-
-        }
-
-
-
-}
-
->>>>>>> 021a02f452a5a3d1bd9309e67968d7895f0a71f4
