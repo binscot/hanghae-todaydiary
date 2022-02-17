@@ -1,7 +1,5 @@
 package com.example.todaydiary.user;
 
-import com.example.todaydiary.diary.Diary;
-import com.example.todaydiary.diary.DiaryRequestDto;
 import com.example.todaydiary.security.JwtTokenProvider;
 import com.example.todaydiary.security.UserDetailsImpl;
 import lombok.RequiredArgsConstructor;
@@ -109,34 +107,32 @@ public class UserService {
     public UserresponseDto UserInfo(UserDetailsImpl userDetails) {
 
         User user = userDetails.getUser();
+        Long id = user.getId();
         String username = user.getUsername();
         String nickname = user.getNickname();
         String User_profile = user.getUser_profile();
-        if (username == null)
 
+        if (username == null)
             throw new NullPointerException("정보가 안들어왔습니다.");
-        UserresponseDto userresponseDto = new UserresponseDto(username, nickname, User_profile);
-        return userresponseDto;
+        return new UserresponseDto(id, username, nickname, User_profile);
     }
 
+    @Transactional
+    public User updateUser(Long id, UserUpdateDto userUpdateDto) {
 
-    public void updateUser(Long id, UserUpdateDto userUpdateDto) {
         User user = userRepository.findById(id).orElseThrow(
                 () -> new IllegalArgumentException("유저가 존재하지 않습니다.")
         );
+        String nickname = userUpdateDto.getNickname();
+        Optional<User> found = userRepository.findByNickname(nickname);
+        if (found.isPresent()) {
+            throw new IllegalArgumentException("중복된 닉네임이 존재합니다.");
+        }
+        if (nickname == null) {
+            throw new NullPointerException("닉네임을 입력해주세요");
+        }
         user.updateUser(userUpdateDto);
         userRepository.save(user);
-        }
+        return user;
+    }
 }
-//    public ResponseEntity<User> UserInfo(String token) {
-//        // 1. 받아온 토큰에서 회원정보 추출.
-//        String userPk = jwtTokenProvider.getUserPk(token);
-//         ReturnUserInfo returnUserInfo= getReturnUserInfo(userPk);
-//            returnUser.setToken(jwtTokenProvider.createToken(member.getUsername()));
-//        returnUser.setUsername(member.getUsername());
-//        returnUser.setNickname(member.getNickname());
-//        returnUser.setUser_profile(member.getUser_profile());
-//        return returnUser;
-//
-//        return userPk;
-//    }

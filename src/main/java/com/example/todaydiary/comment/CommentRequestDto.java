@@ -12,7 +12,7 @@ import javax.validation.constraints.Size;
 @Data
 public class CommentRequestDto {
 
-    @Size(min = 1,max = 30, message = "댓글은 30자 이하로 입력해 주세요!")
+    @Size(min = 1,max = 300, message = "댓글은 300자 이하로 입력해 주세요!")
     @NotBlank(message = "댓글을 입력해주세요.")
     private String comment;
 }

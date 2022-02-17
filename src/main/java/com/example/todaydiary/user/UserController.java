@@ -1,6 +1,5 @@
 package com.example.todaydiary.user;
 
-import com.example.todaydiary.diary.DiaryRequestDto;
 import com.example.todaydiary.security.UserDetailsImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -21,7 +20,7 @@ public class UserController {
         return ResponseEntity.ok(user);
     }
 
-    // ID 중복 체크
+    // ID 중복 체크.
     @PostMapping("/api/signup/checkId")
     public ReturnCheckId checkId(@RequestBody UserRequestDto requestDto){
         return userService.checkId(requestDto);
@@ -41,14 +40,14 @@ public class UserController {
         return ResponseEntity.ok(userresponseDto);
     }
 
-    //
-    @PutMapping("/api/userupdate/{userId}")
-    public Long updateUser(
+    // 유저정보 수정.
+    @PutMapping("/api/user/{userId}")
+    public ResponseEntity updateUser(
             @PathVariable Long userId,
-            @RequestBody UserUpdateDto userUpdateDto)
-    {
-        userService.updateUser(userId, userUpdateDto);
-        return userId;
+            @RequestBody UserUpdateDto userUpdateDto
+    ) {
+        User user = userService.updateUser(userId, userUpdateDto);
+        return ResponseEntity.ok(user);
     }
 
 }
