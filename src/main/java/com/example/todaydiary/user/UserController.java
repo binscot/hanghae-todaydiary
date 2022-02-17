@@ -44,9 +44,9 @@ public class UserController {
     @PutMapping("/api/user/{userId}")
     public Long updateUser(
             @PathVariable Long userId,
-            @RequestBody UserUpdateDto userUpdateDto,
-            @AuthenticationPrincipal UserDetailsImpl userDetails) {
-        userService.updateUser(userId, userUpdateDto, userDetails);
+            @RequestBody UserUpdateDto userUpdateDto
+    ) {
+        userService.updateUser(userId, userUpdateDto);
         return userId;
     }
 

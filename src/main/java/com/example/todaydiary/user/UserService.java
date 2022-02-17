@@ -1,7 +1,5 @@
 package com.example.todaydiary.user;
 
-import com.example.todaydiary.diary.Diary;
-import com.example.todaydiary.diary.DiaryRequestDto;
 import com.example.todaydiary.security.JwtTokenProvider;
 import com.example.todaydiary.security.UserDetailsImpl;
 import lombok.RequiredArgsConstructor;
@@ -119,8 +117,8 @@ public class UserService {
         return userresponseDto;
     }
 
-
-    public void updateUser(Long id, UserUpdateDto userUpdateDto, UserDetailsImpl userDetails) {
+    @Transactional
+    public User updateUser(Long id, UserUpdateDto userUpdateDto) {
 
         User user = userRepository.findById(id).orElseThrow(
                 () -> new IllegalArgumentException("유저가 존재하지 않습니다.")
@@ -135,5 +133,6 @@ public class UserService {
         }
         user.updateUser(userUpdateDto);
         userRepository.save(user);
+        return user;
     }
 }
