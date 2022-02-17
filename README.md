@@ -36,8 +36,7 @@
 
 ## API 설계(API ****Table)****
 
-[Export-ba30eec3-4dbe-4236-98b9-4bf14719a0ef.zip](https://github.com/binscot/hanghae-todaydiary/files/8087233/Export-ba30eec3-4dbe-4236-98b9-4bf14719a0ef.zip)
-
+[제목_없는_데이터베이스.pdf](https://github.com/binscot/hanghae-todaydiary/files/8087288/_._.pdf)
 
 ## 테이블 도표(E****ntity Diagram)****
 
