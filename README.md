@@ -1,5 +1,5 @@
 # 오늘의 일기장 - 오일(Dayily Diary)
-![로고](https://user-images.githubusercontent.com/97504973/154442384-e62bbcc2-b99a-44d1-88b6-df3f05eb3761.png)
+![KakaoTalk_Photo_2022-02-17-18-27-50](https://user-images.githubusercontent.com/97504973/154446288-a3b27461-95eb-4c9a-974d-6f0f1ba5ec9f.jpeg)
 
 
 # 팀원 정보
@@ -36,7 +36,8 @@
 
 ## API 설계(API ****Table)****
 
-[제목_없는_데이터베이스.pdf](https://github.com/binscot/hanghae-todaydiary/files/8087288/_._.pdf)
+![제목_없는_데이터베이스](https://user-images.githubusercontent.com/97504973/154446796-3c1f7885-6167-4dec-b4e3-58ac40e01ff4.PNG)
+
 
 ## 테이블 도표(E****ntity Diagram)****
 
