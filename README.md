@@ -7,13 +7,13 @@
 
 </div>
 </details>
-## 팀원 정보(****Developers)****
+## 팀원 정보(Developers)
 
 [ ](https://www.notion.so/e07945a873a3400584d483dc602010b3)
 
-# 1. 프로젝트 개요(P**roject)**.🎵
+# 1. 프로젝트 개요(Project).🎵
 
-## 프로젝트 소개(**Introduction)**.
+## 프로젝트 소개(Introduction).
 
 오늘 하루 어땠나요?
 
