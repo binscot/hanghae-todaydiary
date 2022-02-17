@@ -30,7 +30,14 @@
 
 ### 와이어 프레임(Wireframe)
 
+![팀원1](https://user-images.githubusercontent.com/97504973/154443516-7859226c-570e-47f9-a498-7ac1edc1ccad.png)
+![팀원3](https://user-images.githubusercontent.com/97504973/154443527-d53685a6-e588-452a-aed4-e3be4a1edc5f.png)
+![팀원2](https://user-images.githubusercontent.com/97504973/154443537-cbcbd86c-9b57-4fea-beba-4c309beb7e4f.png)
+
 ## API 설계(API ****Table)****
+
+[Export-ba30eec3-4dbe-4236-98b9-4bf14719a0ef.zip](https://github.com/binscot/hanghae-todaydiary/files/8087233/Export-ba30eec3-4dbe-4236-98b9-4bf14719a0ef.zip)
+
 
 ## 테이블 도표(E****ntity Diagram)****
 
