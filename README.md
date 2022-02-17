@@ -1,6 +1,7 @@
 # 오늘의 일기장 - 오일(Dayily Diary)
 
-# 팀원 정보(Developers)
+# 팀원 정보
+![팀원](https://user-images.githubusercontent.com/97504973/154441744-8e09d90b-9922-4fea-8ab0-102e76c71c8b.png)
 
 # 1. 프로젝트 개요(Project).🎵
 
