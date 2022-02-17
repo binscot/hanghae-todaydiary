@@ -34,6 +34,7 @@ public class DiaryController {
         //내가 진짜 필요한 정보만 담아서 활용하는 것. User 전체가 아닌 User의 nickname만 뽑아서 쓰는 것이 효율적임.
 
         for (Diary diary : diaries) {
+            Long diaryLikeTotal = diaryLikeRepository.countByDiary(diary);
             DiaryResponseDto diaryResponseDto = new DiaryResponseDto(
                     diary.getId(),
                     diary.getTitle(),
@@ -47,7 +48,8 @@ public class DiaryController {
                     diary.getEmotion(),
                     diary.getTag(),
                     diary.getIs_open(),
-                    diary.getDiaryLike()
+                    diary.getDiaryLike(),
+                    diaryLikeTotal
             );
 
             diaryResponseDtos.add(diaryResponseDto);
@@ -109,6 +111,7 @@ public class DiaryController {
         //효율성 측면에서도 좋음. Diary 테이블(DB)에는 User의 정보 전부(id, nickname, password, email 등)가 연결되어있음.
         //내가 진짜 필요한 정보만 담아서 활용하는 것. User 전체가 아닌 User의 nickname만 뽑아서 쓰는 것이 효율적임.
         for (Diary diary : diaries) {
+            Long diaryLikeTotal = diaryLikeRepository.countByDiary(diary);
             DiaryResponseDto diaryResponseDto = new DiaryResponseDto(
                     diary.getId(),
                     diary.getTitle(),
@@ -122,7 +125,8 @@ public class DiaryController {
                     diary.getEmotion(),
                     diary.getTag(),
                     diary.getIs_open(),
-                    diary.getDiaryLike()
+                    diary.getDiaryLike(),
+                    diaryLikeTotal
             );
 
             diaryResponseDtos.add(diaryResponseDto);

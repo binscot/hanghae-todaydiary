@@ -24,10 +24,11 @@ public class DiaryResponseDto {
     private final String tag;
     private final Boolean is_open;
     private DiaryLike diaryLike;
+    private Long diaryLikeTotal;
 
 
     public DiaryResponseDto(Long id,String title,String nickname, Long uid, String user_profile,String content, LocalDateTime createdAt, LocalDateTime modifiedAt,
-                            List<ImageUrl> imageUrlList , String emotion, String tag, Boolean is_open, DiaryLike diaryLike) {
+                            List<ImageUrl> imageUrlList , String emotion, String tag, Boolean is_open, DiaryLike diaryLike, Long diaryLikeTotal) {
         this.id = id;
         this.title = title;
         this.nickname = nickname;
@@ -41,6 +42,7 @@ public class DiaryResponseDto {
         this.tag = tag;
         this.is_open = is_open;
         this.diaryLike = diaryLike;
+        this.diaryLikeTotal = diaryLikeTotal;
 
     }
 }
