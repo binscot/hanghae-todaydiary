@@ -113,8 +113,7 @@ public class UserService {
         if (username == null)
 
             throw new NullPointerException("정보가 안들어왔습니다.");
-        UserresponseDto userresponseDto = new UserresponseDto(username, nickname, User_profile);
-        return userresponseDto;
+        return new UserresponseDto(username, nickname, User_profile);
     }
 
     @Transactional
@@ -133,6 +132,16 @@ public class UserService {
         }
         user.updateUser(userUpdateDto);
         userRepository.save(user);
+<<<<<<< HEAD
         return user;
     }
 }
+=======
+
+        }
+
+
+
+}
+
+>>>>>>> 021a02f452a5a3d1bd9309e67968d7895f0a71f4
