@@ -1,5 +1,6 @@
-package com.example.todaydiary.diary;
+package com.example.todaydiary.diary.ImageUrl;
 
+import com.example.todaydiary.diary.ImageUrl.ImageUrl;
 import lombok.Getter;
 import lombok.Setter;
 
