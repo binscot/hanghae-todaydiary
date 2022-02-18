@@ -93,9 +93,9 @@
 
 # 4. 데모영상 및 개발노션.♣️
 
-Demo link : 
+Demo link : https://youtu.be/ey0leGmB97Y
 
-Notion link : 
+Notion link : www.notion.so/Dayily-Diary-e3d8f48497bf4eb28d533bdbbdd2704f
 
 # 5. 트러블 슛팅(Trouble Shooting).🚶🏻‍♂️
 
