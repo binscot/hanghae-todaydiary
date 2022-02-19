@@ -34,22 +34,18 @@
 ![팀원3](https://user-images.githubusercontent.com/97504973/154443527-d53685a6-e588-452a-aed4-e3be4a1edc5f.png)
 ![팀원2](https://user-images.githubusercontent.com/97504973/154443537-cbcbd86c-9b57-4fea-beba-4c309beb7e4f.png)
 
-## API 설계(API ****Table)****
+## API 설계(API Table)
 
-![제목_없는_데이터베이스](https://user-images.githubusercontent.com/97504973/154446796-3c1f7885-6167-4dec-b4e3-58ac40e01ff4.PNG)
+![111111](https://user-images.githubusercontent.com/97504973/154630156-8eda365e-5293-4706-9cd1-5729a5e0ab1b.png)
+![2222222](https://user-images.githubusercontent.com/97504973/154630174-66e4c4f6-379a-4cc6-b25e-497b42228c63.png)
 
+## 테이블 도표(Entity Diagram)
 
-## 테이블 도표(E****ntity Diagram)****
-
-![스크린샷 2022-02-17 오전 1.28.42.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/5a7c42dc-c26e-40e3-b65f-2f44ee430612/스크린샷_2022-02-17_오전_1.28.42.png)
+![도표](https://user-images.githubusercontent.com/97504973/154630803-493d0081-4b84-434c-bb47-769733e6cf6f.png)
 
 # 3. 기술 스택(Tech Stack).🙅🏻‍♂️
 
-## 핵심기능(F**unction)**.(프론트 작성해주세요)
-
-### Front-End.
-
-### Back-End
+## 핵심기능(Function).
 
 - 로그인, 회원가입
     - JWT를 이용하여 로그인과 회원가입을 구현하였습니다.
@@ -93,16 +89,13 @@
 
 ## 개발도구(Tools).
 
-### < **Back-End >
-
-
-### < **Front-End >
+![기술](https://user-images.githubusercontent.com/97504973/154630912-63128979-7275-444f-af34-583de69a407c.png)
 
 # 4. 데모영상 및 개발노션.♣️
 
-Demo link : 
+Demo link : https://youtu.be/ey0leGmB97Y
 
-Notion link : 
+Notion link : www.notion.so/Dayily-Diary-e3d8f48497bf4eb28d533bdbbdd2704f
 
 # 5. 트러블 슛팅(Trouble Shooting).🚶🏻‍♂️
 
