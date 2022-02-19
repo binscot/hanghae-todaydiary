@@ -30,6 +30,8 @@ public class JwtTokenProvider { // 토큰 생성, 검증
         secretKey = Base64.getEncoder().encodeToString(secretKey.getBytes());
     }
 
+
+        //JWT 토큰 생성
     public String createToken(String userPk){
         Claims claims = Jwts.claims().setSubject(userPk);
         Date now = new Date();
