@@ -109,3 +109,4 @@ Notion link : www.notion.so/Dayily-Diary-e3d8f48497bf4eb28d533bdbbdd2704f
 4. 용량이 큰 이미지 파일은 업로드 되지 않은 문제.**
 
 # 6. 개인회고록(자유롭게 작성)💬.
+이규진 : https://rbwls44.tistory.com/68?category=1018562
