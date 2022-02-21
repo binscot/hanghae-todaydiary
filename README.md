@@ -99,7 +99,39 @@ Notion link : www.notion.so/Dayily-Diary-e3d8f48497bf4eb28d533bdbbdd2704f
 
 # 5. 트러블 슛팅(Trouble Shooting).🚶🏻‍♂️
 
-1. CORS 정책으로 인한 접속문제.**
+1. CORS 정책으로 인한 접속문제.
+- (1) 에러 내용
+    
+    ![https://user-images.githubusercontent.com/87135478/145666395-7f840620-48a8-43a9-b371-ca1b0a26fee7.png](https://user-images.githubusercontent.com/87135478/145666395-7f840620-48a8-43a9-b371-ca1b0a26fee7.png)
+    
+    (2) 해결
+    
+    [//WebSecureConfig.java](https://websecureconfig.java/) 파일 내, CORS 관련 설정 추가
+    
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+    http
+    .cors()
+    .and()
+    .csrf()
+    .disable();
+    
+    @Bean
+    public CorsConfigurationSource corsConfigurationSource() {
+    UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+    CorsConfiguration configuration = new CorsConfiguration();
+    
+    ```
+    configuration.addAllowedMethod("*");
+    configuration.addAllowedHeader("*");
+    configuration.addExposedHeader("Authorization");
+    configuration.setAllowCredentials(true); // 서버가 응답할 때 json을 자바스크립트에서 처리할 수 있도록 함
+    configuration.addAllowedOriginPattern("*");
+    
+    source.registerCorsConfiguration("/**", configuration);
+    return source;
+    }
+
 
 2. 완벽하지 API 설계**
 
@@ -109,3 +141,4 @@ Notion link : www.notion.so/Dayily-Diary-e3d8f48497bf4eb28d533bdbbdd2704f
 4. 용량이 큰 이미지 파일은 업로드 되지 않은 문제.**
 
 # 6. 개인회고록(자유롭게 작성)💬.
+이규진 : https://rbwls44.tistory.com/68?category=1018562
